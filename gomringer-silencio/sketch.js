@@ -15,7 +15,7 @@ let lineHeight;
 
 function setup() {
 
-  N = 5;
+  N = 3;
   halfN = Math.floor(N/2);
 
   word = "silencio";
