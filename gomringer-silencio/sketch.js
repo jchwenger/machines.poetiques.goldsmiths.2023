@@ -17,6 +17,7 @@ function setup() {
 
   N = 3;
   halfN = Math.floor(N/2);
+  halfNPlus2 = Math.floor((N+2)/2);
 
   word = "silencio";
 
@@ -36,8 +37,8 @@ function draw() {
   background(255);
 
   for (i = 0; i < N; i++) {
-    for (j = 0; j < N; j++) {
-      if (i === halfN && j === halfN) {
+    for (j = 0; j < N + 2; j++) {
+      if (i === halfN && j === halfNPlus2) {
         continue;
       } else {
         text(
