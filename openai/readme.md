@@ -6,3 +6,15 @@ The template for this app was first inspired by [this example](https://lab.arts.
 - The lovely tutorial by [Dan Shiffman](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6b36TzJidYfIYwTFEq3K5qH).
 
 See also the [OpenAI API reference](https://platform.openai.com/docs/libraries).
+
+---
+
+Secret API key in `secret.txt` (see `server.js`).
+
+If you wish to use the file, paste the key into it and save it.
+
+It is then recommended to tell Git to ignore this file and keep its content unchanged, so that you don't add it by mistake to your fork:
+
+```bash
+git update-index --skip-worktree openai/secret.txt
+```
