@@ -2,6 +2,8 @@
 // Eugene Gomringer, 'silencio', 1954
 //
 // Jérémie Wenger, 2023
+// In the context of *Machines poétiques*: exploring textual systems through
+// experimental French poetry, with Iris Colomb, Goldsmiths College
 // --------------------------------------------------------------------------------
 
 let N;

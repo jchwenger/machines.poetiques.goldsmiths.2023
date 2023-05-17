@@ -2,6 +2,8 @@
 // Pierre Garnier, 'Dalle funéraire spatialiste', from *Cimetière spatialiste*, 1973
 //
 // Jérémie Wenger, 2023
+// In the context of *Machines poétiques*: exploring textual systems through
+// experimental French poetry, with Iris Colomb, Goldsmiths College
 // --------------------------------------------------------------------------------
 
 // a very interesting article (in French, unfortunately) with many a beautiful

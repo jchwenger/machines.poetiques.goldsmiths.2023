@@ -2,6 +2,8 @@
 // Ilse Garnier, three pieces from 'Rythmes et silences', in  *Jazz pour les yeux, anthologie de poésie spatiale*, Editions L’herbe qui tremble, 2011
 //
 // Jérémie Wenger, 2023
+// In the context of *Machines poétiques*: exploring textual systems through
+// experimental French poetry, with Iris Colomb, Goldsmiths College
 // --------------------------------------------------------------------------------
 
 // pictures available here:

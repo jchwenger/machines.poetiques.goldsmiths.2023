@@ -1,3 +1,11 @@
+// --------------------------------------------------------------------------------
+// P5js + Node server with websockets and the OpenAI API
+//
+// Jérémie Wenger, 2023
+// In the context of *Machines poétiques*: exploring textual systems through
+// experimental French poetry, with Iris Colomb, Goldsmiths College
+// --------------------------------------------------------------------------------
+
 // const { Configuration, OpenAIApi } = require('openai');
 // const configuration = new Configuration({
 //   apiKey: process.env.OPENAI_API_KEY,
