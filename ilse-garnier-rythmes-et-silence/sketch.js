@@ -16,12 +16,17 @@ let word3;
 
 let whiteSpace;
 
+let poemIndex;
+let poemFunctions;
+
 function setup() {
   createCanvas(500, 500);
 
-  word1 = 'rythmes';
-  word2 = 'et';
+  word1 = 'rythmes'; // TODO: in the current sketch, I use words as global variables.
+  word2 = 'et';      // you could instead pass them as function arguments!
   word3 = 'silence';
+
+  poemIndex = 1;
 
   whiteSpace = 40;
 
@@ -29,16 +34,63 @@ function setup() {
   textSize(16);
   fill(0);
 
+  poemFunctions = [
+    poem1,
+    poem2,
+    poem3
+  ];
+
 }
 
 function draw() {
   background(255);
-  // poem1();
-  poem2();
+
+  // selecting the current poem function and calling it
+  poemFunctions[poemIndex]();
 }
 
+// using arrow keys or numbers to switch between poems
+function keyPressed() {
+  switch (key) {
+    case '1':
+      poemIndex = 0;
+      return;
+    case '2':
+      poemIndex = 1;
+      return;
+    case '3':
+      poemIndex = 2;
+      return;
+    case ' ':
+      poemIndex = mod(poemIndex + 1, poemFunctions.length);
+      return;
+  }
+
+  switch (keyCode) {
+    case UP_ARROW:
+      poemIndex = mod(poemIndex - 1, poemFunctions.length);
+      return;
+    case LEFT_ARROW:
+      poemIndex = mod(poemIndex - 1, poemFunctions.length);
+      return;
+    case DOWN_ARROW:
+      poemIndex = mod(poemIndex + 1, poemFunctions.length);
+      return;
+    case RIGHT_ARROW:
+      poemIndex = mod(poemIndex + 1, poemFunctions.length);
+      return;
+  }
+}
+
+// --------------------------------------------------------------------------------
+// poem functions
+
 function poem1() {
-  // beware, word1 & word2 must have the same number of letters
+  // Beware, word1 & word2 must have the same number of letters
+  // TODO: adapt the code so that it works with words of different lengths?
+  // (This will have aesthetic/visual consequences, how do you handle those?)
+
+  // left word
   textAlign(RIGHT);
   for (let i = 0; i < word1.length; i++){
     // top left
@@ -51,6 +103,7 @@ function poem1() {
   textAlign(CENTER);
   text(word2, width/2, height/2);
 
+  // left word
   textAlign(LEFT);
   for (let i = 0; i < word3.length; i++){
     // top right
@@ -61,39 +114,91 @@ function poem1() {
 }
 
 function poem2() {
-  const w3 = (word3 + ' ').repeat(2);
+  // This poem has really two very different processes going on, a rather simple one
+  // for the bottom left, and a more elaborate one for the upper right. Can you understand
+  // the mechanism of the upper right triangle, and perhaps change the code so that you can
+  // control the shapes of the two triangles at will (using variables that you pass as arguments
+  // of the function?
 
   // bottom left triangle
   textAlign(LEFT);
+
+  const w3 = (word3 + ' ').repeat(2);
   for (let i = 0; i < w3.length; i++) {
     text(w3.slice(0, i), 100, 100 + i * textLeading());
   }
 
   // upper right triangle
+  // the principle for this is, for each line:
+  // - move three letters to the right (rythme → thme)
+  // - shift the beginning of the line by two letters
+  //   while keeping the end fixed (each line is shorter
+  //   than the previous one by two)
   textAlign(RIGHT);
 
-  const w1 = word1 + ' ';
-  const w1b = (word1 + ' ').repeat(6);
-  const w1c = (word1 + ' ').repeat(4);
-  let windowWidth = w1c.length - 1;
-  let ww = w1b;
-  // for (let i = 0; i < w1b.length; i += 3) {
+  // TODO: what can be tweaked/turned into variables:
+  // - the initial repetitions of the baseWord (4)
+  // - the step size for i (skip the number of letters)
+  // - the step size for windowWidth (how fast the line reduces)
+  const baseWord = word1 + ' ';
+  let wordRepeated = (baseWord).repeat(4);
+  const originalWidth = textWidth(wordRepeated);
+  let windowWidth = wordRepeated.length - 1;
+
+  // wordDisplayed will be what we write to the screen (↓ removing the last space)
+  let wordDisplayed = wordRepeated.slice(wordRepeated.length - 1);
+
   let i = 0;
-  while (ww.length > 0) {
-    ww = w1b.slice(i, i + windowWidth);
-    // let j = 0;
-    // while (ww.length < (w1b.length  - i*2/3)) {
-    //   const m = j % w1.length;
-    //   ww = `${ww}${w1.slice(m, m+1)}`;
-    //   j += 1;
-    // }
-    // ww = ww.slice(0, ww.length-1);
-    text(ww, 100 + textWidth(w1c), 100 + (i/3 - 1) * textLeading());
-    i += 3;
-    windowWidth -= 2;
+  while (wordDisplayed.length > 0) {
+    // console.log(`'${wordDisplayed}' | i: ${i}, windowWidth: ${windowWidth}, added: ${i + windowWidth}, wordRepeated.length: ${wordRepeated.length}`);
+
+    if (i + windowWidth > wordRepeated.length) { // as we slide, we need to expand wordRepeated by baseWord
+      wordRepeated += baseWord;                  // whenever i + windowWidth is bigger than its length
+    }
+
+    // use the index and windowWidth to slide the appropriate length
+    wordDisplayed = wordRepeated.slice(i, i + windowWidth);
+    text(wordDisplayed, 100 + originalWidth, 100 + (i/3 - 1) * textLeading());
+
+    i += 3;            // we shift to the right by three letters
+    windowWidth -= 2;  // we reduce the line by two letters
   }
 
 }
 
 function poem3() {
+  // Beware, word1 & word2 must have the same number of letters
+  // TODO: adapt the code so that it works with words of different lengths?
+  // (This will have aesthetic/visual consequences, how do you handle those?)
+
+  // left word
+  textAlign(RIGHT);
+  for (let i = 0; i < word1.length; i++){
+    // top left
+    text(word1.slice(word1.length - i - 1), width/2 - whiteSpace, height/2 - (word1.length - 1) * textLeading() + i * textLeading());
+    // bottom left
+    if (i > 0) text(word1.slice(i), width/2 - whiteSpace, height/2 + i * textLeading());
+    // ↑ hack: if we draw the middle word twice it appears bold
+  }
+
+  // central word
+  textAlign(CENTER);
+  text(word2, width/2, height/2);
+
+  // right word
+  textAlign(LEFT);
+  for (let i = 0; i < word3.length; i++){
+    // top right
+    text(word3.slice(0, i + 1), width/2 + whiteSpace, height/2 - (word3.length - 1) * textLeading() + i * textLeading());
+    // bottom right
+    if (i > 0) text(word3.slice(0, word3.length - i), width/2 + whiteSpace, height/2 + i * textLeading());
+    // ↑ hack: if we draw the middle word twice it appears bold
+  }
 }
+
+// fix for the modulo (%) annoyance with negative numbers
+// from: https://stackoverflow.com/a/17323608
+function mod(n, m) {
+  return ((n % m) + m) % m;
+}
+
