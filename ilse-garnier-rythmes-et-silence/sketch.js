@@ -26,7 +26,7 @@ function setup() {
   word2 = 'et';      // you could instead pass them as function arguments!
   word3 = 'silence';
 
-  poemIndex = 1;
+  poemIndex = 0;
 
   whiteSpace = 40;
 
