@@ -5,8 +5,8 @@
 // https://vimeo.com/183284925
 //
 // Jérémie Wenger, 2023
-// In the context of *Machines poétiques*: exploring textual systems through
-// experimental French poetry, with Iris Colomb, Goldsmiths College
+// With Iris Colomb, in the context of *Machines poétiques*: exploring textual
+// systems through experimental French poetry, Goldsmiths College
 // --------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
