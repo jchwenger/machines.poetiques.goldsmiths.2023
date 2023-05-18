@@ -7,13 +7,15 @@ Iris Colomb & Jérémie Wenger
 
 ## Starter code
 
-### Ilse Garnier, *Poème cinématographique*
+### Ilse Garnier, 'Poème cinématographique'
 
 [P5.js sketch](/garnier-ilse-poeme-cinematographique)
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/183284925?h=de62ba2b11" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+[!['Poème cinématographique'](https://i.vimeocdn.com/video/592454277-f7b74e2129a992c99456fe634090d93538cd859234d0e8ba4d76071b9ffcccab-d?mw=800&mh=450)](https://vimeo.com/183284925?embedded=true&source=video_title&owner=2850912)
 
-### Ilse Garnier, *La Meuse*
+([source](https://vimeo.com/183284925?embedded=true&source=video_title&owner=2850912), and don't miss the additional goodness available in this other video, ['Ilse & Pierre Garnier: Poemes mecaniques. 1965'](https://vimeo.com/464154197).)
+
+### Ilse Garnier, 'La Meuse'
 
 [P5.js sketch](/garnier-ilse-la-meuse)
 
@@ -21,7 +23,7 @@ Iris Colomb & Jérémie Wenger
 
 ([source](https://journals.openedition.org/interfaces/2009?lang=en))
 
-### Ilse Garnier, *Rythmes et silence*
+### Ilse Garnier, 'Rythmes et silence'
 
 [P5.js sketch](/garnier-ilse-rythmes-et-silence)
 
@@ -33,7 +35,7 @@ Iris Colomb & Jérémie Wenger
 
 ([source](https://poezibao.typepad.com/poezibao/2011/05/anthologie-permanente-ilse-garnier.html))
 
-### Pierre Garnier, *Dalle funéraire spatialiste*
+### Pierre Garnier, 'Dalle funéraire spatialiste'
 
 [P5.js sketch](/garnier-pierre-cinema)
 
@@ -41,8 +43,7 @@ Iris Colomb & Jérémie Wenger
 
 ([source](https://journals.openedition.org/interfaces/2009?lang=en))
 
-
-### Eugene Gomringer, *Silencio*
+### Eugene Gomringer, 'Silencio'
 
 [P5.js sketch](/gomringer-silencio)
 
@@ -55,4 +56,4 @@ Iris Colomb & Jérémie Wenger
 
 ## ChatGPT
 
-- A [websocket app](/openai) with with NodeJS, Express, Socket.IO and P5js using the API from OpenAI.
+- A [websocket app](/openai) with with NodeJS, Express, Socket.IO and P5js using the [API from OpenAI](https://platform.openai.com/docs/api-reference).
