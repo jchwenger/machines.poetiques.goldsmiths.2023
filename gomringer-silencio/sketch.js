@@ -6,6 +6,9 @@
 // systems through experimental French poetry, Goldsmiths College
 // --------------------------------------------------------------------------------
 
+// one photograph of the printed poem:
+// https://nickm.com/post/2019/07/gomringers-silencio-an-unlikely-sonnet/comment-page-1/
+
 // Ideas for further development:
 // - can you think of another word that could also be used in this framework?
 // - perhaps one could use translations of the word? How would the meaning of
