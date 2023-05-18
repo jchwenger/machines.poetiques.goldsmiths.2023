@@ -10,6 +10,21 @@
 // and inspirational example of visual poetry
 // https://journals.openedition.org/interfaces/2009?lang=en
 
+// Ideas for further development:
+// - first, one could get familiar with the different functions, and how they
+//   work (beware, the last one has a bit of math in there, just skip that if
+//   you are not interested);
+// - the system to switch between the different function is more here for the
+//   purpose of the demo, and doesn't necessarily need to be there;
+// - second, it might be interesting to try and incorporate some animation,
+//   perhaps importing some ideas from `garnier-ilse-poeme-cinematographique`?
+// - note on efficiency: this sketch does a lot of useless calculations as it
+//   recomputes the positions every time the functions are called: one could
+//   imagine instead writing the same functionality but with classes, so
+//   turning the slope into an object that does the calculation once when
+//   instantiated, and then only loops through the array of positions to draw
+//   the text
+
 let word;
 
 let slopeIndex;
@@ -24,7 +39,7 @@ function setup() {
 
   word = 'flotter';
 
-  slopeIndex = 0;
+  slopeIndex = 2;
   slopeFunctions = [slope1, slope2, slope3];
 }
 
@@ -161,9 +176,9 @@ function slope3(
   endX = width - 70,
   nRepetitions = 14,
   waveHeight = 140,
-  slopeFactor = 1,  // TODO: tweaking this will affect how steep the sigmoid slope is
-  slopeOffset = 0,  // TODO: tweaking this will shift where the slope occurs (horizontally)
-  eps = .6,         // TODO: tweaking this factor will change how the repetitions are spread or concentrated
+  slopeFactor = .5,  // TODO: tweaking this will affect how steep the sigmoid slope is
+  slopeOffset = 0,   // TODO: tweaking this will shift where the slope occurs (horizontally)
+  eps = .6,          // TODO: tweaking this factor will change how the repetitions are spread or concentrated
 ) {
 
   push();
@@ -178,6 +193,7 @@ function slope3(
   textAlign(LEFT);
 
   let x, y;
+  let iTan;
   let invertSigmoid;
   const halfRepetitions = Math.floor(nRepetitions/2);
 
@@ -188,9 +204,19 @@ function slope3(
 
   for (let i = -halfRepetitions; i < halfRepetitions; i++) {
 
-    // if we wanted to huddle the words in the middle, more math is needed
-    const iMapped = map(i, -halfRepetitions, halfRepetitions - 1, minusHPIeps, HPIminusEps);
-    x = map(Math.tan(iMapped), tanLeftLimit, tanRightLimit, startX, endX - textWidth(word));
+    // in this case, we want to huddle the words in the middle, so that there
+    // are more of them in the middle of the slope rather than in the
+    // extremities – how do we do that? What we want is something like
+    // interpolation, but a nonlinear version of it: I thought I could use the
+    // tangent function which is shaped like a sigmoid and flipped vertically: (see:
+    // https://mathbooks.unl.edu/PreCalculus/images/imagesChap13/tangentgraph.png),
+    //
+    // - first, we map the i of our loop to be in the range ]-PI/2,PI/2[;
+    // - then, we use the built-in Math.tan and map it again to the full width
+    //   (this will have the effect of pushing the words more towards the
+    //   middle of the interval, a bit like an ease-in and -out in animation)
+    iTan = map(i, -halfRepetitions, halfRepetitions - 1, minusHPIeps, HPIminusEps);
+    x = map(Math.tan(iTan), tanLeftLimit, tanRightLimit, startX, endX - textWidth(word));
 
     // we use the sigmoid to compute the vertical position along the wave
     invertSigmoid = 1 - sigmoid(i + slopeOffset, slopeFactor); // flip the sigmoid: 0 goes to 1, 1 to 0
