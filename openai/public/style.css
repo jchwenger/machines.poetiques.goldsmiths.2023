@@ -7,13 +7,57 @@ html, body {
 
 body {
   margin: 0;
+  background-color: white;
   display: flex;
+}
+
+main {
+  width: 100%;
+  display:flex;
 
   /* This centers our sketch horizontally. */
   justify-content: center;
 
   /* This centers our sketch vertically. */
   align-items: center;
+}
 
-  background-color: white;
+textarea, input, label {
+  margin-bottom: 5px;
+}
+
+#ui {
+  margin: 5px;
+  padding: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type=number] {
+  width: 60px;
+}
+
+#textarea-container {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#parameters-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+button {
+  width: 80px;
+  height: 40px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-between;
 }
