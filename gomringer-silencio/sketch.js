@@ -15,6 +15,7 @@
 //   the empty slot change in this case?
 // - can you think of a version where the empty slots isn't always in the
 //   centre? Either moves around on its own, or through interaction?
+// - how hard would it be to try another shape, e.g. a triangle?
 
 let N;
 let halfN;
