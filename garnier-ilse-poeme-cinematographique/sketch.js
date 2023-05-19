@@ -12,34 +12,39 @@
 // --------------------------------------------------------------------------------
 // draw text along a sine wave
 // ---------------------------
-// original inspiration by xinxin:
+// (from 0'44)
+// original inspiration by xinxin (Qianqian Ye?):
 // - https://editor.p5js.org/xinxin/sketches/okGMvmxM
 // - https://p5js.org/examples/math-sine-wave.html
 // and GPT-4!
-
-let xSpacing;   // distance between each horizontal location
-let w;          // width of entire wave
-let theta;      // start angle at 0
-// let amplitude;  // height of wave
-let period;     // how many pixels before the wave repeats
-let dx;         // value for incrementing x
-let yvalues;    // using an array to store height values for the wave
-let waveOffset;
-let waveSpeed;
-
-let sentence;
-let sentenceArray;
-let repeatedSentenceArray;
+let laWave;
 // --------------------------------------------------------------------------------
+// a black circle with words in the circumference
+// ----------------------------------------------
+// (at 5'26 and after)
 
+// words around a circle inspiration by:
+// - Allison Parrish: https://editor.p5js.org/allison.parrish/sketches/ryoVAen0m
+// - enickles: https://editor.p5js.org/enickles/sketches/WNSKWx0Ap
 let leCircle;
 // --------------------------------------------------------------------------------
 
-function setup() {
-  createCanvas(710, 400);
-  setupWave();
-  textSize(24);
+let animationsIndex;
 
+function setup() {
+  createCanvas(800, 500);
+
+  animationsIndex = 0;
+
+  laWave = new textWave('terre ');
+  laWaveBackward = new textWave('terre ',
+    amplitude = 80,
+    period = 500,
+    xSpacing = 30,
+    waveSpeed = .3,
+    mode = 'backward',
+    tSize = 35,
+  );
   leCircle = new blackedOutTextCircle('terre ');
 }
 
@@ -47,131 +52,115 @@ function draw() {
   background(0);
 
   // helper lines
-  push();
-  stroke(255);
-  line(width/2,0, width/2, height);
-  line(0,height/2, width, height/2);
-  pop();
+  // push();
+  // stroke(255);
+  // line(width/2,0, width/2, height);
+  // line(0,height/2, width, height/2);
+  // pop();
 
-  // renderWave(30, width/3, height/4, width - 30, period);
-  // renderWave(sentence, 30, width/3, 155, height/4);
-  // waveOffset -= 0.001;
-
-
-  leCircle.draw(width/2, height/2, true);
-}
-
-function renderWave(x, y, amplitude, waveWidth, period) {
-  push();
-  let frequency = TWO_PI / period;
-  let totalStrWidth = sentence.length * xSpacing;
-  let xOffset = (frameCount * waveSpeed) % totalStrWidth;
-  // console.log(xOffset, frameCount, waveWidth)
-
-  textFont('Georgia');
-  noStroke();
-  fill(255);
-
-  let xPos, yPos;
-  for (let i = 0; i * xSpacing - xOffset <= waveWidth; i++) {
-    xPos = x + (i * xSpacing) - xOffset;
-    yPos = y + amplitude * sin(frequency * xPos);
-    if (xPos >= x && xPos <= x + waveWidth) {
-      text(sentence[i % sentence.length], xPos, yPos);
-    }
+  if (animationsIndex === 0) {
+    laWave.draw(30, width/3, 50);
+  } else if (animationsIndex === 1) {
+    laWaveBackward.draw(width-30, height - 50);
+  } else if (animationsIndex === 2) {
+    leCircle.draw(width/2, height/2, true);
   }
-  pop();
+}
+
+function keyPressed() {
+  if (key === ' ') {
+    animationsIndex = (animationsIndex + 1) % 2;
+  }
+}
+
+// --------------------------------------------------------------------------------
+// Text displayed along a sine wave
+
+class textWave {
+
+  constructor(
+    sentence,
+    amplitude = 40,
+    period = 300,
+    xSpacing = 20,
+    waveSpeed = .3,
+    mode = 'forward',
+    tSize = 24,
+  ) {
+    this.sentence = sentence;
+    this.amplitude = amplitude;
+    this.period = period;
+    this.frequency = TWO_PI / period;
+    this.xSpacing = xSpacing;
+    this.waveSpeed = waveSpeed;
+    this.mode = mode;
+    this.offset = 0;
+    this.textSize = tSize;
+  }
+
+  // TODO: for efficiency's sake, it might be good to consider a mechanism
+  // that prevents these loops from drawing beyond a certain width (e.g. the screen)?
+  draw(x, y) {
+
+    push();
+
+    // // helper lines
+    // noFill();
+    // stroke(255);
+    // line(x,y - this.amplitude, x + this.offset, y - this.amplitude);
+    // line(x,y + this.amplitude, x + this.offset, y + this.amplitude);
+    // ellipse(x, y, 5, 5);
+
+    textSize(this.textSize);
+    textFont('Georgia');
+    textAlign(CENTER, CENTER);
+
+    fill(255);
+    noStroke();
+
+    if (this.mode === 'backward') {
+
+      let xPos = x + this.offset;
+      let yPos = sin(this.frequency * xPos) * this.amplitude;
+
+      let i = 0;
+      const xStart = x - this.xSpacing;
+      while (xPos < xStart) {
+        text(this.sentence[mod(i, this.sentence.length)], xPos, y + yPos);
+        xPos += this.xSpacing;
+        yPos = sin(this.frequency * xPos) * this.amplitude;
+        i++;
+      }
+      this.offset -= this.waveSpeed;
+
+    } else {
+
+      let xPos = x + this.offset;
+      let yPos = sin(this.frequency * xPos) * this.amplitude;
+
+      let i = this.sentence.length - 1;
+      const xStart = x - this.xSpacing;
+      while (xPos > xStart) {
+        // TODO: here we display the text character by character: one could imagine
+        // adding transformations, like color/brightness, pepperWithRandom, or simply
+        // randomly remove a character every so often
+        text(this.sentence[mod(i, this.sentence.length)], x + xPos, y + yPos);
+        xPos -= this.xSpacing;
+        yPos = sin(this.frequency * xPos) * this.amplitude;
+        i--;
+      }
+      this.offset += this.waveSpeed;
+    }
+
+
+    pop();
+  }
+
 }
 
 
-function setupWave() {
-  xSpacing = 20;
-  // theta = 0.0;
-  // amplitude = 75.0;
-  period = 300;
-  // w = width + 16;
-  // dx = (TWO_PI / period) * xSpacing;
-  // yvalues = new Array(floor(w / xSpacing));
-  // waveOffset = 0;
-
-  waveSpeed = .3;
-  sentence = 'terre ';
-  // sentenceArray = sentence.split("");
-
-}
-
-// function renderWave(sentence, x, y, waveWidth, amplitude=75) {
-//   /*
-//   * amplitude: height of wave
-//   */
-
-//   push();
-//   textAlign(CENTER, CENTER);
-
-//   // helper lines
-//   stroke(255);
-//   line(x,y - amplitude, x + waveWidth, y - amplitude);
-//   line(x,y + amplitude, x + waveWidth, y + amplitude);
-
-//   // Increment theta (try different values for
-//   // 'angular velocity' here)
-//   // theta += 0.02;
-
-//   // // For every x value, calculate a y value with sine function
-//   // let x = theta;
-//   // for (let i = 0; i < yvalues.length; i++) {
-//   //   yvalues[i] = sin(x) * amplitude;
-//   //   x += dx;
-//   // }
-
-//   const interval = Math.floor(xSpacing * dx);
-//   const quotient = Math.floor(waveWidth/interval);
-//   // const remainder = interval % waveWidth;
-//   // console.log(xSpacing * dx, interval, quotient, remainder);
-//   const maxTextLength = quotient;
-//   // const repeatedSentenceArray = new Array(quotient);
-//   // for (let i = 0; i < repeatedSentenceArray.length; i++) {
-//   //   repeatedSentenceArray[i] = sentenceArray[i % (sentenceArray.length - 1)];
-//   // }
-//   // console.log(quotient, remainder);
-//   // console.log(repeatedSentenceArray);
-//   // console.log(sentenceArray.slice(0, remainder));
-
-//   textFont('Georgia');
-//   noStroke();
-//   fill(255);
-
-//   let xPos = waveOffset;
-//   let yPos = sin(xPos) * amplitude;
-//   const offsetInterval = Math.floor(waveOffset / interval);
-//   // console.log(waveOffset, offsetInterval);
-//   let startIndex = 0 + offsetInterval;
-//   let endIndex = maxTextLength + offsetInterval;
-//   // A simple way to draw the wave with an ellipse at each location
-//   for (let i = startIndex; i < endIndex; i++) {
-//     // ellipse(i * xSpacing, amplitude / 2 + yvalues[i], 16, 16);
-//     text(sentenceArray[i % (sentenceArray.length - 1)], x + xPos * xSpacing, y + yPos);
-//     xPos += dx
-//     yPos = sin(xPos) * amplitude;
-//   }
-//   pop();
-
-// }
-
-// define textAlongSine(t) {
-// }
-
-// gradually make text appear
-
-// gradually make scattered letters of a text appear along a line
-
-// scatter text around and behind circle
-// words around a circle inspiration by
-// - Allison Parrish: https://editor.p5js.org/allison.parrish/sketches/ryoVAen0m
-// - enickles: https://editor.p5js.org/enickles/sketches/WNSKWx0Ap
-
-// function blackedOutTextSetup() {
-// }
+// --------------------------------------------------------------------------------
+// The black circle with words, 5'26 and after
 
 class blackedOutTextCircle {
   constructor(
@@ -208,13 +197,17 @@ class blackedOutTextCircle {
       this.polarYs.push(polarY);
 
       // modify the text in various ways
+      // -------------------------------
+      // repeat the text
       let s = sentence;
       if (this.randomTextRepeat > 1) {
         s = s.repeat(Math.ceil(Math.random() * this.randomTextRepeat)); // minimum of one
       }
+      // sometimes change it to upper case
       if (Math.random() > this.randomCapsThreshold) {
         s = this.sentence.toUpperCase();
       }
+      // sometimes shuffle the letters
       if (Math.random() > this.randomTextShuffleThreshold) {
        s = shuffle(this.sentence.split('')).join('');
       }
@@ -222,7 +215,7 @@ class blackedOutTextCircle {
 
     }
     // console.log(this.polarXs, this.polarYs, this.capsSwitches);
-    console.log(this.modifiedSentences);
+    // console.log(this.modifiedSentences);
   }
 
   draw(x, y) {
@@ -236,6 +229,7 @@ class blackedOutTextCircle {
 
     translate(x, y);
 
+    // first draw the words around the circle
     for (let i = 0; i < this.numWords; i++) {
       push();
       translate(this.polarXs[i], this.polarYs[i]);
@@ -243,6 +237,7 @@ class blackedOutTextCircle {
       pop();
     }
 
+    // then draw the circle on top
     fill(0);
     ellipseMode(RADIUS);
     ellipse(0,0, this.radius - 5);
@@ -250,6 +245,9 @@ class blackedOutTextCircle {
   }
 
 }
+
+// --------------------------------------------------------------------------------
+// utils
 
 function pepperWithRandom(x, wiggleFactor) {
   /*
@@ -260,10 +258,7 @@ function pepperWithRandom(x, wiggleFactor) {
   const randomWiggle = (Math.random() - .5) * maxWiggle * 2; // from -maxWiggle to maxWiggle
   return x + randomWiggle;
 }
-// one word with letters appearing, then moving away left and right
 
-
-// utils
 // Fisher-Yates (aka Knuth) Shuffle: https://stackoverflow.com/a/2450976
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -276,4 +271,10 @@ function shuffle(array) {
     [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
+}
+
+// fix for the modulo (%) annoyance with negative numbers
+// from: https://stackoverflow.com/a/17323608
+function mod(n, m) {
+  return ((n % m) + m) % m;
 }
