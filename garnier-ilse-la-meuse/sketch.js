@@ -39,7 +39,7 @@ function setup() {
 
   word = 'flotter';
 
-  slopeIndex = 2;
+  slopeIndex = 0;
   slopeFunctions = [slope1, slope2, slope3];
 }
 
