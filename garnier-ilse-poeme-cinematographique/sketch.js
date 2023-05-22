@@ -19,10 +19,11 @@
 // and GPT-4!
 let laWave;
 // --------------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------------
 // a black circle with words in the circumference
 // ----------------------------------------------
 // (at 5'26 and after)
-
 // words around a circle inspiration by:
 // - Allison Parrish: https://editor.p5js.org/allison.parrish/sketches/ryoVAen0m
 // - enickles: https://editor.p5js.org/enickles/sketches/WNSKWx0Ap
@@ -41,7 +42,7 @@ function setup() {
     amplitude = 80,
     period = 500,
     xSpacing = 30,
-    waveSpeed = .3,
+    speed = .3,
     mode = 'backward',
     tSize = 35,
   );
@@ -83,7 +84,7 @@ class textWave {
     amplitude = 40,
     period = 300,
     xSpacing = 20,
-    waveSpeed = .3,
+    speed = .3,
     mode = 'forward',
     tSize = 24,
   ) {
@@ -92,7 +93,7 @@ class textWave {
     this.period = period;
     this.frequency = TWO_PI / period;
     this.xSpacing = xSpacing;
-    this.waveSpeed = waveSpeed;
+    this.speed = speed;
     this.mode = mode;
     this.offset = 0;
     this.textSize = tSize;
@@ -126,12 +127,12 @@ class textWave {
       let i = 0;
       const xStart = x - this.xSpacing;
       while (xPos < xStart) {
-        text(this.sentence[mod(i, this.sentence.length)], xPos, y + yPos);
-        xPos += this.xSpacing;
-        yPos = sin(this.frequency * xPos) * this.amplitude;
+        text(this.sentence[mod(i, this.sentence.length)], xPos, y + yPos); // TODO: here we display the text character by character: one could imagine
+        xPos += this.xSpacing;                                             // adding transformations, like color/brightness, pepperWithRandom, or simply
+        yPos = sin(this.frequency * xPos) * this.amplitude;                // randomly remove a character every so often
         i++;
       }
-      this.offset -= this.waveSpeed;
+      this.offset -= this.speed;
 
     } else {
 
@@ -141,15 +142,12 @@ class textWave {
       let i = this.sentence.length - 1;
       const xStart = x - this.xSpacing;
       while (xPos > xStart) {
-        // TODO: here we display the text character by character: one could imagine
-        // adding transformations, like color/brightness, pepperWithRandom, or simply
-        // randomly remove a character every so often
-        text(this.sentence[mod(i, this.sentence.length)], x + xPos, y + yPos);
+        text(this.sentence[mod(i, this.sentence.length)], x + xPos, y + yPos);  // TODO: same comment as above
         xPos -= this.xSpacing;
         yPos = sin(this.frequency * xPos) * this.amplitude;
         i--;
       }
-      this.offset += this.waveSpeed;
+      this.offset += this.speed;
     }
 
 
