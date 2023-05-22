@@ -12,7 +12,7 @@ const socket = io();
 
 function setup() {
   createCanvas(400, 700);
-  textFont("Helvetica");
+  textFont('Helvetica');
   textSize(20);
   fill(0);
   textAlign(CENTER);
@@ -122,76 +122,76 @@ socket.on('image response', (message) => {
 
 function createUI() {
 
-  const UI = document.createElement("div");
-  UI.setAttribute("id", "ui");
+  const UI = document.createElement('div');
+  UI.setAttribute('id', 'ui');
 
-  const title = document.createElement("h1");
-  title.innerHTML = "Control panel";
+  const title = document.createElement('h1');
+  title.innerHTML = 'Control panel';
 
   // form
-  const form = document.createElement("form");
-  form.setAttribute("id", "request-form");
+  const form = document.createElement('form');
+  form.setAttribute('id', 'request-form');
 
   // base prompt ---------------------------------------
   const promptDiv = document.createElement('div');
-  promptDiv.setAttribute("id", "textarea-container");
+  promptDiv.setAttribute('id', 'textarea-container');
 
-  const prompt = document.createElement("textarea");
-  prompt.setAttribute("type", "text");
-  prompt.setAttribute("name", "prompt");
-  prompt.setAttribute("rows", "10");
-  prompt.setAttribute("cols", "50");
+  const prompt = document.createElement('textarea');
+  prompt.setAttribute('type', 'text');
+  prompt.setAttribute('name', 'prompt');
+  prompt.setAttribute('rows', '10');
+  prompt.setAttribute('cols', '50');
 
-  const promptLabel = document.createElement("label");
-  promptLabel.innerHTML = "prompt";
+  const promptLabel = document.createElement('label');
+  promptLabel.innerHTML = 'prompt';
 
   promptDiv.appendChild(promptLabel);
   promptDiv.appendChild(prompt);
 
   // system prompt -------------------------------------
   const systemDiv = document.createElement('div');
-  systemDiv.setAttribute("id", "textarea-container");
+  systemDiv.setAttribute('id', 'textarea-container');
 
-  const system = document.createElement("textarea");
-  system.setAttribute("type", "text");
-  system.setAttribute("name", "system");
-  system.setAttribute("rows", "10");
-  system.setAttribute("cols", "50");
+  const system = document.createElement('textarea');
+  system.setAttribute('type', 'text');
+  system.setAttribute('name', 'system');
+  system.setAttribute('rows', '10');
+  system.setAttribute('cols', '50');
 
-  const systemLabel = document.createElement("label");
-  systemLabel.innerHTML = "system prompt";
+  const systemLabel = document.createElement('label');
+  systemLabel.innerHTML = 'system prompt';
 
   systemDiv.appendChild(systemLabel);
   systemDiv.appendChild(system);
 
   // parameters ----------------------------------------
   const parametersDiv = document.createElement('div');
-  parametersDiv.setAttribute("id", "parameters-container");
+  parametersDiv.setAttribute('id', 'parameters-container');
 
   // temperature
-  const temperature = document.createElement("input");
-  temperature.setAttribute("type", "number");
-  temperature.setAttribute("min", "0.1");
-  temperature.setAttribute("max", "2.0");
-  temperature.setAttribute("step", "0.1");
-  temperature.setAttribute("name", "temperature");
-  temperature.setAttribute("value", "0.7");
-  temperature.setAttribute("placeholder", "0.7");
+  const temperature = document.createElement('input');
+  temperature.setAttribute('type', 'number');
+  temperature.setAttribute('min', '0.1');
+  temperature.setAttribute('max', '2.0');
+  temperature.setAttribute('step', '0.1');
+  temperature.setAttribute('name', 'temperature');
+  temperature.setAttribute('value', '0.7');
+  temperature.setAttribute('placeholder', '0.7');
 
-  const temperatureLabel = document.createElement("label");
-  temperatureLabel.innerHTML = "temperature";
+  const temperatureLabel = document.createElement('label');
+  temperatureLabel.innerHTML = 'temperature';
 
-  const maxTokens = document.createElement("input");
-  maxTokens.setAttribute("type", "number");
-  maxTokens.setAttribute("min", "1");
-  maxTokens.setAttribute("max", "256");
-  maxTokens.setAttribute("step", "1");
-  maxTokens.setAttribute("name", "max-tokens");
-  maxTokens.setAttribute("value", "7");
-  maxTokens.setAttribute("placeholder", "7");
+  const maxTokens = document.createElement('input');
+  maxTokens.setAttribute('type', 'number');
+  maxTokens.setAttribute('min', '1');
+  maxTokens.setAttribute('max', '256');
+  maxTokens.setAttribute('step', '1');
+  maxTokens.setAttribute('name', 'max-tokens');
+  maxTokens.setAttribute('value', '7');
+  maxTokens.setAttribute('placeholder', '7');
 
-  const maxTokensLabel = document.createElement("label");
-  maxTokensLabel.innerHTML = "max tokens";
+  const maxTokensLabel = document.createElement('label');
+  maxTokensLabel.innerHTML = 'max tokens';
 
   parametersDiv.appendChild(maxTokensLabel);
   parametersDiv.appendChild(maxTokens);
@@ -199,38 +199,38 @@ function createUI() {
   parametersDiv.appendChild(temperature);
 
   // buttons -------------------------------------------
-  const buttonsDiv = document.createElement("div");
-  buttonsDiv.setAttribute("id", "buttons");
+  const buttonsDiv = document.createElement('div');
+  buttonsDiv.setAttribute('id', 'buttons');
 
   // completion button
-  const completionButton = document.createElement("button");
-  completionButton.setAttribute("type", "button");
-  completionButton.setAttribute("content", "completion");
-  completionButton.setAttribute("id", "completion-button");
-  completionButton.textContent = "completion";
-  completionButton.addEventListener("click", () => requestCompletion());
+  const completionButton = document.createElement('button');
+  completionButton.setAttribute('type', 'button');
+  completionButton.setAttribute('content', 'completion');
+  completionButton.setAttribute('id', 'completion-button');
+  completionButton.textContent = 'completion';
+  completionButton.addEventListener('click', () => requestCompletion());
 
   // chat button
-  const chatButton = document.createElement("button");
-  chatButton.setAttribute("type", "button");
-  chatButton.setAttribute("content", "chat");
-  completionButton.setAttribute("id", "chat-button");
-  chatButton.textContent = "chat";
-  chatButton.addEventListener("click", () => requestChat());
+  const chatButton = document.createElement('button');
+  chatButton.setAttribute('type', 'button');
+  chatButton.setAttribute('content', 'chat');
+  completionButton.setAttribute('id', 'chat-button');
+  chatButton.textContent = 'chat';
+  chatButton.addEventListener('click', () => requestChat());
 
   // img button
-  const imgButton = document.createElement("button");
-  imgButton.setAttribute("type", "button");
-  imgButton.setAttribute("content", "image");
-  completionButton.setAttribute("id", "img-button");
-  imgButton.textContent = "image";
-  imgButton.addEventListener("click", () => requestImage());
+  const imgButton = document.createElement('button');
+  imgButton.setAttribute('type', 'button');
+  imgButton.setAttribute('content', 'image');
+  completionButton.setAttribute('id', 'img-button');
+  imgButton.textContent = 'image';
+  imgButton.addEventListener('click', () => requestImage());
 
   // reset button
-  const resetButton = document.createElement("button");
-  resetButton.setAttribute("type", "reset");
-  resetButton.setAttribute("content", "reset");
-  resetButton.textContent = "reset";
+  const resetButton = document.createElement('button');
+  resetButton.setAttribute('type', 'reset');
+  resetButton.setAttribute('content', 'reset');
+  resetButton.textContent = 'reset';
 
   buttonsDiv.appendChild(completionButton);
   buttonsDiv.appendChild(chatButton);
