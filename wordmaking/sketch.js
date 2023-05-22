@@ -25,7 +25,7 @@ let typeWriterFont;
 
 function preload() {
 
-  roots = ['tens', 'react'];
+  roots = ['gloop', 'react'];
 
   prefixes = {
     'latin': loadStrings('data/latin-prefixes.txt', removeEmptyStrings),
@@ -96,12 +96,13 @@ function keyPressed() {
 
 function createWords() {
   const combinationsDiv = document.getElementById('combinations-container');
-  for (const pref of prefixes['latin']) {
-    for (const suff of suffixes['verbs']) {
-      const el = document.createElement('div');
-      const newWord = document.createTextNode(`${pref} ${roots[0]} ${suff}`);
-      el.appendChild(newWord);
-      combinationsDiv.appendChild(el);
+  for (const root of roots) {
+    for (const pref of prefixes['latin']) {
+      for (const suff of suffixes['verbs']) {
+        const el = document.createElement('div');
+        el.innerHTML = (`${pref}<em>${root}</em>${suff}`);
+        combinationsDiv.appendChild(el);
+      }
     }
   }
 }
@@ -136,7 +137,7 @@ function createUI() {
   UI.setAttribute('id', 'ui');
 
   const title = document.createElement('h1');
-  title.innerHTML = 'Combinations';
+  title.innerHTML = 'Combinations →';
 
   // base prompt ---------------------------------------
   const combinationsDiv = document.createElement('div');

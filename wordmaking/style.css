@@ -25,5 +25,13 @@ main {
 
 #ui {
   margin: 5px;
-  padding: 5px;
+  padding: 5px 20px 5px 5px;
+}
+
+#combinations-container {
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: flex;
+  height: 90%;
+  gap: 10px;
 }
