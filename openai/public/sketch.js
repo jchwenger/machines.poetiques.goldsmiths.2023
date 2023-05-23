@@ -50,16 +50,14 @@ function displayResponse(message) {
 
 function displayImage(message) {
 
-  background(225, 224, 242);
+  background(255, 254, 242);
 
   // console.log(`inside displayImage, message:`);
   // console.log(message);
-  const img = createImg(message.url, imageCallback); // we need a callback to display the image when it's ready
-  img.hide();
-}
-
-function imageCallback(img) {
-  image(img, margin, margin, img.width, img.height);
+  const img = createImg(message.url, img => {
+    image(img, margin, margin, img.width, img.height);
+  }); // using the callback & an anonymous function: https://p5js.org/reference/#/p5/loadImage
+  img.hide(); // weirdly, having this inside the callback results in a glitch
 }
 
 // --------------------------------------------------------------------------------
