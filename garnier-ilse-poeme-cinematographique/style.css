@@ -1,0 +1,19 @@
+/* https://editor.p5js.org/andytilia/sketches/clR7Rww1z */
+
+html, body {
+  height: 100%;
+  -webkit-tap-highlight-color: transparent; /* disable blue highlight on tap, https://stackoverflow.com/a/30319808 */
+}
+
+body {
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+
+  background-color: white;
+}
