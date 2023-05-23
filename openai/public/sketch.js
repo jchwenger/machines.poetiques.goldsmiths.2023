@@ -50,12 +50,16 @@ function displayResponse(message) {
 
 function displayImage(message) {
 
-  background(255, 254, 242);
+  background(225, 224, 242);
 
   // console.log(`inside displayImage, message:`);
   // console.log(message);
-  const img = createImg(message.url); // not the same as createImage!
-  img.position(margin, margin);
+  const img = createImg(message.url, imageCallback); // we need a callback to display the image when it's ready
+  img.hide();
+}
+
+function imageCallback(img) {
+  image(img, margin, margin, img.width, img.height);
 }
 
 // --------------------------------------------------------------------------------
