@@ -25,7 +25,7 @@ let typeWriterFont;
 
 function preload() {
 
-  roots = ['gloop', 'react'];
+  roots = ['gloop', 'cluster'];
 
   prefixes = {
     'latin': loadStrings('data/latin-prefixes.txt', removeEmptyStrings),
