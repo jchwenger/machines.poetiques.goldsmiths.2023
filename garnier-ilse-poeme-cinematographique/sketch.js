@@ -70,7 +70,7 @@ function draw() {
 
 function keyPressed() {
   if (key === ' ') {
-    animationsIndex = (animationsIndex + 1) % 2;
+    animationsIndex = (animationsIndex + 1) % 3;
   }
 }
 
