@@ -11,6 +11,8 @@ Iris Colomb & Jérémie Wenger
 
 [P5.js sketch](garnier-ilse-poeme-cinematographique/)
 
+Press the spacebar to switch between two different sine-wave text objects and the circle & text one.
+
 [!['Poème cinématographique'](https://i.vimeocdn.com/video/592454277-f7b74e2129a992c99456fe634090d93538cd859234d0e8ba4d76071b9ffcccab-d?mw=800&mh=450)](https://vimeo.com/183284925?embedded=true&source=video_title&owner=2850912)
 
 ([source](https://vimeo.com/183284925?embedded=true&source=video_title&owner=2850912), and don't miss the additional goodness available in this other video, ['Ilse & Pierre Garnier: Poemes mecaniques. 1965'](https://vimeo.com/464154197).)
@@ -23,21 +25,21 @@ Sketch:
 
 !['Poème cinématographique', sketch still](pics/garnier-ilse-poème-cinématographique.3.png)
 
-Press the spacebar to switch between two different sine-wave text objects and the circle & text one.
-
 ### Ilse Garnier, 'La Meuse'
 
 [P5.js sketch](garnier-ilse-la-meuse/)
+
+Press the spacebar to switch between three stages of implementation of the wave.
 
 !['La Meuse'](pics/garnier-ilse-la-meuse.jpg)
 
 ([source](https://journals.openedition.org/interfaces/2009?lang=en))
 
-Press the spacebar to switch between three stages of implementation of the wave.
-
 ### Ilse Garnier, 'Rythmes et silence'
 
 [P5.js sketch](garnier-ilse-rythmes-et-silence/)
+
+Press the spacebar to switch between the three poems.
 
 !['Rythmes et silence'](pics/garnier-ilse-rythmes-et-silence.1.gif)
 
@@ -46,8 +48,6 @@ Press the spacebar to switch between three stages of implementation of the wave.
 !['Rythmes et silence'](pics/garnier-ilse-rythmes-et-silence.3.gif)
 
 ([source](https://poezibao.typepad.com/poezibao/2011/05/anthologie-permanente-ilse-garnier.html))
-
-Press the spacebar to switch between the three poems.
 
 ### Pierre Garnier, 'Dalle funéraire spatialiste'
 
