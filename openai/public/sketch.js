@@ -36,7 +36,7 @@ function keyPressed() {
 // --------------------------------------------------------------------------------
 // display functions
 
-function displayResponse(message) {
+function displayResponse(message, completion=false) {
 
   background(255, 254, 242);
 
@@ -45,7 +45,16 @@ function displayResponse(message) {
   textAlign(LEFT);
   textFont('Georgia');
 
-  text(message, margin, margin, width - 2 * margin);
+  if (completion) {
+    // in completion mode, fill both sketch and input with prompt + answer
+    const promptTextarea = document.getElementsByName('prompt')[0];
+    const prompt = promptTextarea.value;
+    text(`${prompt}${message}`, margin, margin, width - 2 * margin);
+    promptTextarea.value = `${prompt}${message}`;
+  } else {
+    // in chat mode, we only display the text in the sketch
+    text(message, margin, margin, width - 2 * margin);
+  }
 }
 
 function displayImage(message) {
@@ -103,7 +112,7 @@ function requestImage() {
 socket.on('completion response', (message) => {
   console.log('completion response:');
   console.log(message);
-  displayResponse(message);
+  displayResponse(message, true);
 });
 
 socket.on('chat response', (message) => {
