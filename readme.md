@@ -86,7 +86,7 @@ A [websocket app](openai/) with with NodeJS, Express, SocketIO and P5js using th
 
 Press `¬` to toggle the UI.
 
-Click on `completion` to get ChatGPT to continue the text in the **prompt** `textarea` (**system** is ignored).
+Click on `completion` to get ChatGPT to continue the text in the **prompt** `textarea` (**system** is ignored, both the prompt `textarea` and the sketch are filled with the **prompt** and the completion). In the picture below, the original prompt is highlighted.
 
 ![openai, chatgpt completion](pics/openai.chatgpt-completion.png)
 
