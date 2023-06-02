@@ -6,8 +6,9 @@
 // systems through experimental French poetry, Goldsmiths College
 // --------------------------------------------------------------------------------
 
-// sources
+// Sources
 // -------
+// TODO: check the files in the `data/` folder!
 // Latin prefixes: https://pressbooks.bccampus.ca/greeklatinroots/chapter/%C2%A759-a-summary-of-latin-prefixes
 // Greek prefixes: https://pressbooks.bccampus.ca/greeklatinroots2/chapter/%c2%a7132-a-summary-of-greek-prefixes/
 // English prefixes: https://en.wikipedia.org/wiki/English_prefix
@@ -25,6 +26,8 @@ let typeWriterFont;
 
 function preload() {
 
+  // TODO: experiment with your own roots! Remember: you can also create
+  // sentences, or anything, really, that benefits from combinations!
   roots = ['gloop', 'cluster'];
 
   prefixes = {
@@ -70,13 +73,28 @@ function setup() {
   textFont(typeWriterFont);
   fill(0);
 
+  // // The loadStrings function line-splitting leaves an empty line at the end,
+  // // which can be nice if you want the option of having 'no suffix/prefix'!
+  // // (See also: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
+  // // TODO: uncomment if you wish to remove empty lines.
+  // for (const [key, value] of Object.entries(prefixes)) {
+  //   prefixes[key] = removeEmptyStrings(value);
+  // }
+  // for (const [key, value] of Object.entries(suffixes)) {
+  //   suffixes[key] = removeEmptyStrings(value);
+  // }
+
   createUI();
 
-  createWords();
+  // TODO: tweak me using other prefixes/suffixes, or loading your own text files!
+  const prefixType = 'latin';
+  const suffixType = 'verbs';
+
+  createWords(prefixType, suffixType);
 
   background(0);
 
-  pickRandomWord('latin', 'verbs');
+  pickRandomWord(prefixType, suffixType);
 
 }
 
@@ -94,11 +112,11 @@ function keyPressed() {
   }
 }
 
-function createWords() {
+function createWords(prefixType, suffixType) {
   const combinationsDiv = document.getElementById('combinations-container');
   for (const root of roots) {
-    for (const pref of prefixes['latin']) {
-      for (const suff of suffixes['verbs']) {
+    for (const pref of prefixes[prefixType]) {
+      for (const suff of suffixes[suffixType]) {
         const el = document.createElement('div');
         el.innerHTML = (`${pref}<em>${root}</em>${suff}`);
         combinationsDiv.appendChild(el);
@@ -165,7 +183,7 @@ function toggleUI() {
 // --------------------------------------------------------------------------------
 // utils
 
-// prevent the space bar from scrolling!
+// Prevent the space bar from scrolling!
 // https://stackoverflow.com/questions/22559830/html-prevent-space-bar-from-scrolling-page
 window.addEventListener('keydown', function(e) {
   if(e.keyCode == 32 && e.target == document.body) {
@@ -176,4 +194,3 @@ window.addEventListener('keydown', function(e) {
 function removeEmptyStrings(arr) {
   return arr.filter(s => s.length > 0);
 }
-
