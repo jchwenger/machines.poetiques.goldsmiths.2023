@@ -242,6 +242,7 @@ function createUI() {
   resetButton.setAttribute('type', 'reset');
   resetButton.setAttribute('content', 'reset');
   resetButton.textContent = 'reset';
+  resetButton.addEventListener('click', () => background(255, 254, 242));
 
   buttonsDiv.appendChild(completionButton);
   buttonsDiv.appendChild(chatButton);
