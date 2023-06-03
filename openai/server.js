@@ -9,28 +9,47 @@
 const { Configuration, OpenAIApi } = require('openai');
 const fs = require('fs');
 
-// Authentication, two ways: or a file
+// Authentication, two ways: environment or a file
+// -----------------------------------------------
 // 1) local environment
 //    for this, you need to define the variable in your terminal before launching node:
 //    export OPENAI_API_KEY=...
-const configuration = new Configuration({
+let configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+// console.log(configuration);
 
-// // 2)
-// // Synchronous file read, cf. https://nodejs.dev/en/learn/reading-files-with-nodejs/ (and GPT :>)
-// function configureAPI() {
-//   try {
-//     const data = fs.readFileSync(__dirname + '/secret.txt');
-//     // console.log(`My secret key: ${data.toString().trim()}`);
-//     return new Configuration({
-//       apiKey: data.toString().trim(),
-//     });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-// const configuration = configureAPI();
+// 2)
+// Synchronous file read, cf. https://nodejs.dev/en/learn/reading-files-with-nodejs/ (and GPT :>)
+if (!configuration.apiKey) {
+
+  console.log('configuration through the environment variable failed, tying `secret.txt` file');
+
+  function configureAPI() {
+    try {
+      const data = fs.readFileSync(__dirname + '/secret.txt');
+      return new Configuration({
+        apiKey: data.toString().trim(),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  configuration = configureAPI();
+  // console.log(configuration);
+
+  if (!configuration.apiKey) {
+    console.log('---------------------------------------------------------------------------------');
+    console.log('could not access the secret API key, please read `readme.md` on how to configure!');
+    console.log('---------------------------------------------------------------------------------');
+    process.exit(2);
+  }
+
+} else {
+
+  console.log('configuration through the environment variable successful!');
+
+}
 
 const openai = new OpenAIApi(configuration);
 
