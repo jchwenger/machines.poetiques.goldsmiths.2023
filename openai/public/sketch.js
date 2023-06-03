@@ -6,6 +6,7 @@
 // systems through experimental French poetry, Goldsmiths College
 // --------------------------------------------------------------------------------
 
+let bgColor; // the background, used in setup, draw & when resetting the sketch
 const margin = 20;
 
 const socket = io();
@@ -19,7 +20,9 @@ function setup() {
   // const response = requestText();
   // console.log(response);
   createUI();
-  background(255, 254, 242);
+
+  bgColor = color(255, 254, 242)
+  background(bgColor);
 
 }
 
@@ -38,7 +41,7 @@ function keyPressed() {
 
 function displayResponse(message, completion=false) {
 
-  background(255, 254, 242);
+  background(bgColor);
 
   fill(0);
   textSize(14);
@@ -59,7 +62,7 @@ function displayResponse(message, completion=false) {
 
 function displayImage(message) {
 
-  background(255, 254, 242);
+  background(bgColor);
 
   // console.log(`inside displayImage, message:`);
   // console.log(message);
@@ -242,7 +245,7 @@ function createUI() {
   resetButton.setAttribute('type', 'reset');
   resetButton.setAttribute('content', 'reset');
   resetButton.textContent = 'reset';
-  resetButton.addEventListener('click', () => background(255, 254, 242));
+  resetButton.addEventListener('click', () => background(bgColor));
 
   buttonsDiv.appendChild(completionButton);
   buttonsDiv.appendChild(chatButton);
