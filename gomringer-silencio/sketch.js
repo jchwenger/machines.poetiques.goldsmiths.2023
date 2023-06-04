@@ -17,9 +17,13 @@
 //   centre? Either moves around on its own, or through interaction?
 // - how hard would it be to try another shape, e.g. a triangle?
 
-let N;
-let halfN;
 let margin;
+
+let nRows;
+let nColumns;
+
+let blankRow;
+let blankColumn;
 
 let word;
 let wLength;
@@ -28,9 +32,10 @@ let lineHeight;
 
 function setup() {
 
-  N = 3;                             // TODO: one of the simplest tweaks: the
-  halfN = Math.floor(N/2);           // number of lines these two variables
-  halfNPlus2 = Math.floor((N+2)/2);  // determine where the missing word will be.
+  nRows = 5;                             // TODO: one of the simplest tweaks: the
+  nColumns = 3;                          // number of lines these two variables
+  blankRow = Math.floor(nRows/2);        // determine where the missing word will be.
+  blankColumn = Math.floor(nColumns/2);
 
   word = "silencio";
 
@@ -50,17 +55,17 @@ function draw() {
   background(255);
 
   // loop through the columns
-  for (i = 0; i < N; i++) {
+  for (i = 0; i < nColumns; i++) {
     // loop through the lines
-    for (j = 0; j < N + 2; j++) {
+    for (j = 0; j < nRows; j++) {
       // if we are in the middle, don't write
-      if (i === halfN && j === halfNPlus2) {
+      if (i === blankColumn && j === blankRow) {
         continue;
       } else {
         text(  // we draw the text
           word,
-          width/2 - halfN * wLength + wLength * i,
-          height/2 - halfN * lineHeight + lineHeight * j
+          width/2 - blankColumn * wLength + wLength * i,
+          height/2 - blankRow * lineHeight + lineHeight * j
         );
       }
     }
