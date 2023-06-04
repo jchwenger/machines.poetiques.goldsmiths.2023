@@ -48,16 +48,17 @@ function displayResponse(message, completion=false) {
   textAlign(LEFT);
   textFont('Georgia');
 
+  // fill both sketch and input with prompt + answer
+  const promptTextarea = document.getElementsByName('prompt')[0];
+  const prompt = promptTextarea.value;
+  // in completion mode, both input & message are displayed
   if (completion) {
-    // in completion mode, fill both sketch and input with prompt + answer
-    const promptTextarea = document.getElementsByName('prompt')[0];
-    const prompt = promptTextarea.value;
     text(`${prompt}${message}`, margin, margin, width - 2 * margin);
-    promptTextarea.value = `${prompt}${message}`;
+  // in chat mode, display the response only
   } else {
-    // in chat mode, we only display the text in the sketch
     text(message, margin, margin, width - 2 * margin);
   }
+  promptTextarea.value = `${prompt}${message}`;
 }
 
 function displayImage(message) {
