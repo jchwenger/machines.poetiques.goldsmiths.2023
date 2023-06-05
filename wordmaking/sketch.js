@@ -31,16 +31,16 @@ function preload() {
   roots = ['gloop', 'cluster'];
 
   prefixes = {
-    'latin': loadStrings('data/latin-prefixes.txt', removeEmptyStrings),
-    'greek': loadStrings('data/greek-prefixes.txt', removeEmptyStrings),
-    'english': loadStrings('data/english-prefixes.txt', removeEmptyStrings),
+    'latin': loadStrings('data/latin-prefixes.txt'),
+    'greek': loadStrings('data/greek-prefixes.txt'),
+    'english': loadStrings('data/english-prefixes.txt'),
   }
 
   suffixes = {
-    'verbs': loadStrings('data/verb-producing-suffixes.txt', removeEmptyStrings),
-    'nouns': loadStrings('data/noun-producing-suffixes.txt', removeEmptyStrings),
-    'adverbs': loadStrings('data/adverb-producing-suffixes.txt', removeEmptyStrings),
-    'adjectives': loadStrings('data/adjective-producing-suffixes.txt', removeEmptyStrings),
+    'verbs': loadStrings('data/verb-producing-suffixes.txt'),
+    'nouns': loadStrings('data/noun-producing-suffixes.txt'),
+    'adverbs': loadStrings('data/adverb-producing-suffixes.txt'),
+    'adjectives': loadStrings('data/adjective-producing-suffixes.txt'),
   }
 
   // // print prefixes
@@ -108,7 +108,7 @@ function keyPressed() {
       toggleUI();
       return;
     case ' ':
-      pickRandomWord('latin', 'verbs');
+      pickRandomWord(prefixType, suffixType);
   }
 }
 
