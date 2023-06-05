@@ -18,6 +18,7 @@
 // - https://p5js.org/examples/math-sine-wave.html
 // and GPT-4!
 let laWave;
+let laWaveBackward;
 // --------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ function setup() {
     mode = 'backward',
     tSize = 35,
   );
-  leCircle = new blackedOutTextCircle('terre ');
+  leCircle = new wordsCircle('terre ');
 }
 
 function draw() {
@@ -160,7 +161,7 @@ class textWave {
 // --------------------------------------------------------------------------------
 // The black circle with words, 5'26 and after
 
-class blackedOutTextCircle {
+class wordsCircle {
   constructor(
     sentence,
     numWords=80,
