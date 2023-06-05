@@ -86,10 +86,10 @@ io.on('connection', (socket) => {
   // console.log('sent message');
 
   socket.on('completion request', (message, sock) => {
-    console.log(`completion requested by user`);
+    console.log(`completion requested by user:`);
     console.log(message);
     sock('the server received your completion request');
-    console.log('making request to the model');
+    console.log('making request to the model...');
     requestCompletion(...Object.values(message))
       .then((response) => {
         // console.log(response); // see the full horror of the response object
@@ -105,10 +105,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat request', (message, sock) => {
-    console.log(`chat requested by user`);
+    console.log(`chat requested by user:`);
     console.log(message);
     sock('the server received your chat request');
-    console.log('making request to the model');
+    console.log('making request to the model...');
     requestMessage(...Object.values(message))
       .then((response) => {
         // console.log(response); // see the full horror of the response object
@@ -125,10 +125,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('image request', (message, sock) => {
-    console.log(`image requested by user`);
+    console.log(`image requested by user:`);
     console.log(message);
     sock('the server received your image request');
-    console.log('making request to the model');
+    console.log('making request to the model...');
     requestImage(...Object.values(message))
       .then((response) => {
         // console.log(response); // see the full horror of the response object
@@ -153,7 +153,7 @@ async function requestCompletion(
   max_tokens = 7,
   temperature = 0.7,
 ) {
-  console.log('inside requestCompletion', prompt, max_tokens, temperature);
+  // console.log('inside requestCompletion', prompt, max_tokens, temperature);
   return await openai.createCompletion({
     model: 'text-davinci-003', // TODO: search the documentation for various models, possibly allow the user to change this from the UI
     prompt: prompt,
@@ -169,7 +169,7 @@ async function requestMessage(
   max_tokens = 7,
   temperature = 0.7,
 ) {
-  console.log('inside requestChat', prompt, system_prompt, max_tokens, temperature);
+  // console.log('inside requestChat', prompt, system_prompt, max_tokens, temperature);
   return await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
