@@ -61,7 +61,7 @@ function draw() {
   // pop();
 
   if (animationsIndex === 0) {
-    laWave.draw(30, width/3, 50);
+    laWave.draw(30, width/3);
   } else if (animationsIndex === 1) {
     laWaveBackward.draw(width-30, height - 50);
   } else if (animationsIndex === 2) {
