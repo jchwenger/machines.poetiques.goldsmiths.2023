@@ -41,7 +41,7 @@ function setup() {
   charWidth = textWidth('m');
   fill(0);
 
-  horizontalRepeat = 6
+  horizontalRepeat = 6;
 
   word  = "cinéma";
   repeatedWord = word.repeat(horizontalRepeat); // .repeat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
