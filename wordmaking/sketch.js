@@ -22,13 +22,16 @@ let roots;
 let prefixes;
 let suffixes;
 
+let prefixType;
+let suffixType;
+
 let typeWriterFont;
 
 function preload() {
 
   // TODO: experiment with your own roots! Remember: you can also create
   // sentences, or anything, really, that benefits from combinations!
-  roots = ['gloop', 'cluster'];
+  roots = ['chant', 'cluster'];
 
   prefixes = {
     'latin': loadStrings('data/latin-prefixes.txt'),
@@ -87,8 +90,8 @@ function setup() {
   createUI();
 
   // TODO: tweak me using other prefixes/suffixes, or loading your own text files!
-  const prefixType = 'latin';
-  const suffixType = 'verbs';
+  prefixType = 'latin';
+  suffixType = 'verbs';
 
   createWords(prefixType, suffixType);
 
