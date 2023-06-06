@@ -31,7 +31,7 @@ function preload() {
 
   // TODO: experiment with your own roots! Remember: you can also create
   // sentences, or anything, really, that benefits from combinations!
-  roots = ['chant', 'cluster'];
+  roots = ['gloop', 'cluster'];
 
   prefixes = {
     'latin': loadStrings('data/latin-prefixes.txt'),
