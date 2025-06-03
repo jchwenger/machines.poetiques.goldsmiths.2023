@@ -44,7 +44,8 @@ function setup() {
   horizontalRepeat = 6;
 
   word  = "cinéma";
-  repeatedWord = word.repeat(horizontalRepeat); // .repeat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+  // .repeat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+  repeatedWord = word.repeat(horizontalRepeat);
 
   xInit = 120;
   yInit = 70;
@@ -78,7 +79,8 @@ function draw() {
       } else if (scheme.direction === 'left'){
         xCurrent -= charWidth;
       }
-      yCurrent += textLeading(); // next line
+      // next line
+      yCurrent += textLeading();
     }
   }
 

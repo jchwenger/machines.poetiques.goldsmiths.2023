@@ -32,9 +32,11 @@ let lineHeight;
 
 function setup() {
 
-  nRows = 5;                             // TODO: one of the simplest tweaks: the
-  nColumns = 3;                          // number of lines these two variables
-  blankRow = Math.floor(nRows/2);        // determine where the missing word will be.
+  // TODO: one of the simplest tweaks: the number of lines these two variables
+  // determine where the missing word will be.
+  nRows = 5;                             
+  nColumns = 3;                          
+  blankRow = Math.floor(nRows/2);        
   blankColumn = Math.floor(nColumns/2);
 
   word = "silencio";
@@ -42,11 +44,13 @@ function setup() {
   margin = 50;
   createCanvas(700, 500);
 
-  fill(0);                                   // TODO: can playing with the
-  fontSize = 20;                             // various attributes of the
-  textAlign(CENTER);                         // text (colour, size, font, etc.)
-  textSize(fontSize);                        // be used to change the poetic
-  textFont('Helvetica');                     // intent or effect of the piece?
+  // TODO: can playing with the various attributes of the text (colour, size,
+  // font, etc.) be used to change the poetic intent or effect of the piece?
+  fill(0);                                   
+  fontSize = 20;                             
+  textAlign(CENTER);                         
+  textSize(fontSize);                        
+  textFont('Helvetica');                     
   lineHeight = textAscent() + textDescent();
   wLength = textWidth(word) + 15;
 }

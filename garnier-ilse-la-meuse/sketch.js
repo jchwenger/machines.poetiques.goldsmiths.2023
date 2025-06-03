@@ -249,8 +249,10 @@ function slope3(
     x = map(Math.tan(iTan), tanLeftLimit, tanRightLimit, startX, endX - textWidth(word));
 
     // we use the sigmoid to compute the vertical position along the wave
-    invertSigmoid = 1 - sigmoid(i + slopeOffset, slopeFactor); // flip the sigmoid: 0 goes to 1, 1 to 0
-    // invertSigmoid = sigmoid(i);                             // TODO: try the reversed version
+    // flip the sigmoid: 0 goes to 1, 1 to 0
+    invertSigmoid = 1 - sigmoid(i + slopeOffset, slopeFactor);
+    // TODO: try the reversed version
+    // invertSigmoid = sigmoid(i);
     y = map(invertSigmoid, 0, 1, startY, startY + waveHeight);
 
     text(word, x, y);

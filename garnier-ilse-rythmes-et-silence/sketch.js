@@ -22,8 +22,10 @@ let poemFunctions;
 function setup() {
   createCanvas(500, 500);
 
-  word1 = 'rythmes'; // TODO: in the current sketch, I use words as global variables.
-  word2 = 'et';      // you could instead pass them as function arguments!
+  // TODO: in the current sketch, I use words as global variables.
+  // you could instead pass them as function arguments!
+  word1 = 'rythmes';
+  word2 = 'et';
   word3 = 'silence';
 
   poemIndex = 0;
@@ -48,6 +50,9 @@ function draw() {
   // selecting the current poem function and calling it
   poemFunctions[poemIndex]();
 }
+
+// --------------------------------------------------------------------------------
+// interaction
 
 // using arrow keys or numbers to switch between poems
 function keyPressed() {
@@ -152,16 +157,20 @@ function poem2() {
   while (wordDisplayed.length > 0) {
     // console.log(`'${wordDisplayed}' | i: ${i}, windowWidth: ${windowWidth}, added: ${i + windowWidth}, wordRepeated.length: ${wordRepeated.length}`);
 
-    if (i + windowWidth > wordRepeated.length) { // as we slide, we need to expand wordRepeated by baseWord
-      wordRepeated += baseWord;                  // whenever i + windowWidth is bigger than its length
+    // as we slide, we need to expand wordRepeated by baseWord
+    // whenever i + windowWidth is bigger than its length
+    if (i + windowWidth > wordRepeated.length) {
+      wordRepeated += baseWord;
     }
 
     // use the index and windowWidth to slide the appropriate length
     wordDisplayed = wordRepeated.slice(i, i + windowWidth);
     text(wordDisplayed, 100 + originalWidth, 100 + (i/3 - 1) * textLeading());
 
-    i += 3;            // we shift to the right by three letters
-    windowWidth -= 2;  // we reduce the line by two letters
+    // we shift to the right by three letters
+    // we reduce the line by two letters
+    i += 3;
+    windowWidth -= 2;
   }
 
 }
@@ -195,6 +204,9 @@ function poem3() {
     // ↑ hack: if we draw the middle word twice it appears bold
   }
 }
+
+// --------------------------------------------------------------------------------
+// utils
 
 // fix for the modulo (%) annoyance with negative numbers
 // from: https://stackoverflow.com/a/17323608

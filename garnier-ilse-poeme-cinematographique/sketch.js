@@ -133,9 +133,12 @@ class textWave {
       let i = 0;
       const xStart = x - this.xSpacing;
       while (xPos < xStart) {
-        text(this.sentence[mod(i, this.sentence.length)], xPos, y + yPos); // TODO: here we display the text character by character: one could imagine
-        xPos += this.xSpacing;                                             // adding transformations, like color/brightness, pepperWithRandom, or simply
-        yPos = sin(this.frequency * xPos) * this.amplitude;                // randomly remove a character every so often
+        // TODO: here we display the text character by character: one could imagine
+        // adding transformations, like color/brightness, pepperWithRandom, or simply
+        // randomly remove a character every so often
+        text(this.sentence[mod(i, this.sentence.length)], xPos, y + yPos);
+        xPos += this.xSpacing;
+        yPos = sin(this.frequency * xPos) * this.amplitude;
         i++;
       }
       this.offset -= this.speed;
@@ -148,7 +151,8 @@ class textWave {
       let i = this.sentence.length - 1;
       const xStart = x - this.xSpacing;
       while (xPos > xStart) {
-        text(this.sentence[mod(i, this.sentence.length)], x + xPos, y + yPos);  // TODO: same comment as above
+        // TODO: same comment as above
+        text(this.sentence[mod(i, this.sentence.length)], x + xPos, y + yPos);
         xPos -= this.xSpacing;
         yPos = sin(this.frequency * xPos) * this.amplitude;
         i--;
@@ -259,7 +263,8 @@ function pepperWithRandom(x, wiggleFactor) {
    * pepperWithRandom(10, .5) yields numbers between 5.0 and 15.0
    */
   const maxWiggle = x * wiggleFactor;
-  const randomWiggle = (Math.random() - .5) * maxWiggle * 2; // from -maxWiggle to maxWiggle
+  // from -maxWiggle to maxWiggle
+  const randomWiggle = (Math.random() - .5) * maxWiggle * 2;
   return x + randomWiggle;
 }
 
