@@ -63,14 +63,44 @@ function draw() {
 
 }
 
-// helpers
-function helperGrid() {
-  push();
-  stroke(255);
-  line(0, height/2, width, height/2);
-  line(width/2, 0, width/2, height);
-  pop();
+// --------------------------------------------------------------------------------
+// interaction
+
+// using arrow keys or numbers to switch between functions
+function keyPressed() {
+  switch (key) {
+    case '1':
+      slopeIndex = 0;
+      return;
+    case '2':
+      slopeIndex = 1;
+      return;
+    case '3':
+      slopeIndex = 2;
+      return;
+    case ' ':
+      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
+      return;
+  }
+
+  switch (keyCode) {
+    case UP_ARROW:
+      slopeIndex = mod(slopeIndex - 1, slopeFunctions.length);
+      return;
+    case LEFT_ARROW:
+      slopeIndex = mod(slopeIndex - 1, slopeFunctions.length);
+      return;
+    case DOWN_ARROW:
+      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
+      return;
+    case RIGHT_ARROW:
+      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
+      return;
+  }
 }
+
+// --------------------------------------------------------------------------------
+// various slope options
 
 function slope1(
   word,
@@ -229,39 +259,14 @@ function slope3(
 }
 
 // --------------------------------------------------------------------------------
-// interaction
+// helper utils
 
-// using arrow keys or numbers to switch between functions
-function keyPressed() {
-  switch (key) {
-    case '1':
-      slopeIndex = 0;
-      return;
-    case '2':
-      slopeIndex = 1;
-      return;
-    case '3':
-      slopeIndex = 2;
-      return;
-    case ' ':
-      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
-      return;
-  }
-
-  switch (keyCode) {
-    case UP_ARROW:
-      slopeIndex = mod(slopeIndex - 1, slopeFunctions.length);
-      return;
-    case LEFT_ARROW:
-      slopeIndex = mod(slopeIndex - 1, slopeFunctions.length);
-      return;
-    case DOWN_ARROW:
-      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
-      return;
-    case RIGHT_ARROW:
-      slopeIndex = mod(slopeIndex + 1, slopeFunctions.length);
-      return;
-  }
+function helperGrid() {
+  push();
+  stroke(255);
+  line(0, height/2, width, height/2);
+  line(width/2, 0, width/2, height);
+  pop();
 }
 
 // --------------------------------------------------------------------------------
