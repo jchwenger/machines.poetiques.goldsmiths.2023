@@ -69,8 +69,13 @@ function draw() {
   }
 }
 
+// --------------------------------------------------------------------------------
+// Interaction
+
 function keyPressed() {
   if (key === ' ') {
+    // when pressing space, switch to the next animation
+    // (and back to 0 when reaching the end)
     animationsIndex = (animationsIndex + 1) % 3;
   }
 }
@@ -252,7 +257,7 @@ function pepperWithRandom(x, wiggleFactor) {
   /*
    * pepperWithRandom(10, .2) yields numbers between 8.0 and 12.0
    * pepperWithRandom(10, .5) yields numbers between 5.0 and 15.0
-  */
+   */
   const maxWiggle = x * wiggleFactor;
   const randomWiggle = (Math.random() - .5) * maxWiggle * 2; // from -maxWiggle to maxWiggle
   return x + randomWiggle;
